@@ -9,4 +9,9 @@ function afterloader(){
     document.getElementById("full-body").style.display = "block";
 }
 
- login_id='".$data['email']."'
+function edit_student(){
+    $('.edit-stu').click(function(){
+        var edit_id = $(this).attr("data");
+        $('[login_id="+edit_id+"]').attr("contenteditable", true);
+    });
+}
