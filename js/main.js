@@ -9,3 +9,4 @@ function afterloader(){
     document.getElementById("full-body").style.display = "block";
 }
 
+ login_id='".$data['email']."'
