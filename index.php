@@ -101,27 +101,6 @@ $(document).ready(function() {
     });
 });
 
-    
-    
-function delete_question(){
-    $('.del-question').click(function(){
-        $.ajax({
-            type : "POST",
-            url  : "admin-preview-delete-questions-sub.php",
-            data : {
-                quesid  : $(this).attr("data")
-            },
-            cache : false,
-            processType : true,
-            success : function(response){
-                if(response=="success")
-                {
-                    $('#delete-questions').click();
-                }
-            }
-        });
-    });
-}
 </script>
 
 <!-- jQuery Coding Start-->
