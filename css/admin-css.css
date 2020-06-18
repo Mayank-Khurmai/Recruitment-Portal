@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: white !important;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+/* Main CSS Coding Start for Admin Page*/
+
+#full-body-admin-home{
+    display: block;
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar-div{
+    width: 100%;
+    height: 10vh;
+    background-color: royalblue;
+    border-bottom: 10px solid black;
+}
+
+.logo-name-div{
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 12px;
+    color: white;
+}
+
+section{
+    width: 100%;
+    height: 80vh;
+}
+
+.section-div-one{
+    width: 80%;
+    height: 100%;
+    float: left;
+    background-color: rgb(207, 198, 191);
+    border-bottom: 8px solid royalblue;
+    overflow-y: scroll;
+}
+
+.section-div-one-preview{
+    width: 90%;
+    max-height: fit-content;
+    min-height: 100%;
+    padding: 20px;
+    padding-top: 40px;
+    margin: 0 auto;
+    background-color: rgb(230, 230, 230);
+}
+
+.section-div-two{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.user-profile-div{
+    width: 100%;
+    height: 20vh;
+    padding: 10px;
+    background-color: rgb(207, 198, 191);
+}
+
+.user-profile-div-image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid black;
+    background-image: url(../images/user-logo.png);
+    background-size: cover;
+}
+
+.user-profile-div-fname, .user-profile-div-id{
+    width: fit-content;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 3px;
+}
+
+.category-grid{
+    width: 100%;
+    height: 5vh;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+}
+
+.category-no{
+    width: 100%;
+    height: 55vh;
+    padding-top: 10px;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 4px solid rgb(0, 0, 0);
+    overflow-y: scroll;
+    background-color: rgb(207, 198, 191);
+}
+
+.category-option{
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.category-option button{
+    width: fit-content;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.category-option button:hover{
+    border: 1px solid black;
+}
+
+footer{
+    width: 100%;
+    height: 10vh;
+}
+
+.all-admin-btn{
+    width: 80%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+    background-color: rgb(194, 173, 173);
+}
+
+.all-admin-btn button{
+    width: fit-content;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.all-admin-btn button:hover{
+    border: 1px solid black;
+}
+
+.final-logout-btn-div{
+    width: 20%;
+    height: 100%;
+    float: left;
+    border-left: 2px solid black;
+    background-color: rgb(207, 198, 191);
+}
+
+.final-logout-btn-div-div{
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.final-logout-btn-div input{
+    width: 100px;
+    height: 45px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 25px;
+    border: none;
+    background-color: royalblue;
+}
+
+.final-logout-btn-div input:hover{
+    color: black;
+}
+
+
+/* All CSS Coding for Preview Window */
+
+.preview-output{
+    margin-bottom: 20px;
+}
+
+#my-admin-loader-output{
+    width: 100%;
+    height: 67vh;
+    position: relative;
+}
+
+.my-admin-loader-div{
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.admin-loader-logo-text{
+    position: absolute;
+    font-size: 60px;
+    font-weight: bolder;
+    color: rgb(36, 33, 33);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.admin-loader{
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid black;
+    border-right: 16px dotted black;
+    border-bottom: 16px solid black;
+    border-left: 16px dotted black;
+    width: 250px;
+    height: 250px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 5s linear infinite;
+  }
+  
+@-webkit-keyframes spin{
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+  
+@keyframes spin{
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#add-question-btn{
+    padding:10px; 
+    border-radius:5px; 
+    border:none; 
+    background-color:rgb(148, 181, 182); 
+    cursor:not-allowed;
+  }
