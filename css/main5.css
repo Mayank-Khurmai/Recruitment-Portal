@@ -1,1 +1,525 @@
-fkmcd
+@charset "UTF-8";
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: white !important;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+/* Animating Loader Coding Start*/
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid yellow;
+  width: 250px;
+  height: 250px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#my-loader{
+    width: 100%;
+    height: 100vh;
+    background-color: #27313b;
+}
+
+.loader-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.my-loader-div{
+    height: 250px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 250px;
+}
+
+
+
+/* Main CSS Coding Start for Login Page*/
+
+#full-body{
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(185, 185, 185);
+}
+
+.login-form-div{
+    width: 400px;
+    height: 600px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(190, 190, 190);
+    box-shadow:0px 8px 8px 8px rgb(97, 92, 92);
+}
+
+.heading-div{
+    width: fit-content;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.confirm-login-heading{
+    color: rgb(39, 10, 10);
+    font-weight: bold;
+    font-size: 25px;
+    font-family: sans-serif;
+}
+
+.user-logo-div{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid black;
+    background-image: url(../images/user-logo.png);
+    background-size: cover;
+}
+
+.form-div{
+    width: 85%;
+    margin: 0 auto;
+    padding-top: 35px;
+    height: 300px;
+}
+
+.email-form-div{
+    height: 43px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow:2px 2px 2px 2px rgb(48, 47, 47);
+}
+
+.user-id-div{
+    width: 15%;
+    height: 100%;
+    float: left;
+    background-image: url(../images/user-id.png);
+    background-size: cover;
+}
+
+.user-id-input-div{
+    width: 85%;
+    height: 100%;
+    float: left;
+}
+
+#input-mail{
+    width: 100%;
+    height: 100%;
+    padding-left: 8px;
+    font-size: 18px;
+}
+
+.pass-form-div{
+    height: 43px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow:2px 2px 2px 2px rgb(48, 47, 47);
+}
+
+.user-key-div{
+    width: 15%;
+    height: 100%;
+    float: left;
+    background-image: url(../images/user-key.png);
+    background-size: cover;
+}
+
+.user-key-input-div{
+    width: 85%;
+    height: 100%;
+    float: left;
+}
+
+#input-pass, #input-key{
+    width: 100%;
+    height: 100%;
+    padding-left: 8px;
+    font-size: 18px;
+}
+
+.submit-div{
+    height: 43px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#submit-div-btn{
+    width: 100px;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.oss-name-div{
+    width: fit-content;
+    margin: 0 auto;   
+}
+
+.oss-name-text{
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.loading-error-div{
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+#error-msg{
+    color: red;
+    display: none;
+}
+
+#login-check{
+    border-radius: 50%;
+    border-top: 2px dotted black;
+    border-right: 2px dotted wheat;
+    border-bottom: 2px dotted black;
+    border-left: 2px dotted wheat;
+    width: 30px;
+    height: 30px;
+    display: none;
+    -webkit-animation: spin 10s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+
+
+
+
+
+
+
+
+/* Main CSS Coding Start for Home Page*/
+
+#full-body-home{
+    display: block;
+    width: 100%;
+    height: 100vh;
+}
+
+.blurr-div-outer-box{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(12, 41, 173, 0.4);
+}
+
+.instruction-div-outer-box{
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.test-start-btn{
+    padding:8px;
+    margin:10px;
+    border-radius:5px;
+    border:1px solid black; 
+    cursor:pointer;
+}
+
+.navbar-div{
+    width: 100%;
+    height: 10vh;
+    background-color: royalblue;
+    border-bottom: 10px solid black;
+}
+
+.logo-name-div{
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 12px;
+    color: white;
+}
+
+section{
+    width: 100%;
+    height: 80vh;
+}
+
+.section-div-one{
+    width: 80%;
+    height: 100%;
+    float: left;
+    border-bottom: 8px solid royalblue;
+}
+
+.instructions-div{
+    height: 20vh;
+    width: 100%;
+    background-color: rgb(194, 173, 173);
+    padding-left: 5%;
+}
+
+.instructions-div ul{
+    display: inline-block;
+    margin: 0px;
+}
+
+.instructions-heading-div{
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.question-display-div{
+    height: 60vh;
+    width: 100%;
+    border-bottom: 8px solid royalblue;
+    border-top: 8px solid royalblue;
+    background-color: rgb(207, 198, 191);
+}
+
+.question-display-div-main{
+    width: 90%;
+    height: 100%;
+    padding: 20px;
+    padding-top: 40px;
+    margin: 0 auto;
+}
+
+.question-display-div-main-left{
+    width: 4%;
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    height: 100%;
+}
+
+.question-display-div-main-right{
+    width: 96%;
+    float: left;
+    height: 100%;
+}
+
+.main-question{
+    width: 100%;
+    height: fit-content;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.main-question-option-div{
+    width: 100%;
+    height: 40px;
+}
+
+.main-question-option-radio-div{
+    width: 4%;
+    height: 100%;
+    float: left;
+}
+
+input[type=radio] {
+    border: 0px;
+    height: 16px;
+    width: 100%;
+    vertical-align: middle;
+}
+
+input[type=checkbox] {
+    border: 0px;
+    height: 15px;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.all-radio, .all-checkbox{
+    display: none;
+}
+
+.main-question-option-abcd-div{
+    width: 96%;
+    height: 100%;
+    font-size: 17px;
+    float: left;
+}
+
+.section-div-two{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.user-profile-div{
+    width: 100%;
+    height: 20vh;
+    padding: 10px;
+    background-color: rgb(207, 198, 191);
+}
+
+.user-profile-div-image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid black;
+    background-image: url(../images/user-logo.png);
+    background-size: cover;
+}
+
+.user-profile-div-fname, .user-profile-div-id{
+    width: fit-content;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 3px;
+}
+
+.questions-grid{
+    width: 100%;
+    height: 5vh;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+}
+
+.question-no{
+    width: 100%;
+    height: 55vh;
+    padding-top: 10px;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    overflow-y: scroll;
+    background-color: rgb(207, 198, 191);
+}
+
+.question-no-box{
+    height:40px;
+    width:40px;
+    padding:5px;
+    border:3px solid black;
+    border-radius:8px;
+    margin:8.5px; 
+    float:left; 
+    cursor:pointer;
+}
+
+.question-no-box-text{
+    text-align:center;
+    font-weight:bold; 
+    font-size:21px;
+}
+
+footer{
+    width: 100%;
+    height: 10vh;
+}
+
+.all-btn{
+    width: 80%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+    background-color: rgb(194, 173, 173);
+}
+
+.all-btn button{
+    width: 180px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.all-btn button:hover{
+    border: 1px solid black;
+}
+
+.final-submit-btn-div{
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: rgb(207, 198, 191);
+}
+
+.final-submit-btn-div-div{
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.final-submit-btn-div input{
+    width: 100px;
+    height: 45px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 25px;
+    border: none;
+    background-color: royalblue;
+}
+
+.final-submit-btn-div input:hover{
+    color: black;
+}
+
