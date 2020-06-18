@@ -1,28 +1,145 @@
 $(document).ready(function() {
-    $('.category-option').click(function(e){
+    $('.admin-preview-index').click(function(e){
+        var request = $(this).attr('id');
         e.preventDefault();
         $.ajax({
             type : "POST",
             url  : "admin-preview-index.php",
             data : {
-                request : $(this).attr('id'),
+                request : request
             },
             cache : false,
+            processType : true,
             beforeSend : function(){
-                document.getElementById("output-box").innerHTML = "<div id='my-admin-loader'><div class='my-admin-loader-div'><div class='admin-loader'></div></div></div>";
+            
             },
             success: function(response)
             {
-              document.getElementById("output-box").innerHTML= response.trim();
-              return false;
-            }
+                document.getElementById("view-all-ajax-preview-output").innerHTML= response.trim();
+                if(request=="add-question")
+                {
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-approved-users>button').css("border", "1px solid black");  
+                    $('.add-question>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('#add-question>button').css("background-color", "royalblue");
+                    add_question();
+                } 
+                else if(request=="admin-home")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#admin-home>button').css("border", "1px solid black");  
+                    $('#admin-home>button').css("background-color", "royalblue");  
+                } 
+                else if(request=="view-all-user")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-all-user>button').css("border", "1px solid black");  
+                    $('#view-all-user>button').css("background-color", "royalblue");  
+                }
+                else if(request=="view-all-questions")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-all-questions>button').css("border", "1px solid black");  
+                    $('#view-all-questions>button').css("background-color", "royalblue");    
+                }
+                else if(request=="delete-questions")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#delete-questions>button').css("border", "1px solid black");  
+                    $('#delete-questions>button').css("background-color", "royalblue");     
+                    delete_question();
+                }
+                else if(request=="email-single-user")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#email-single-user>button').css("border", "1px solid black");  
+                    $('#email-single-user>button').css("background-color", "royalblue");      
+                }
+                else if(request=="edit-student-details")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#edit-student-details>button').css("border", "1px solid black");  
+                    $('#edit-student-details>button').css("background-color", "royalblue");      
+                    edit_student();
+                }
+                else if(request=="email-all-user")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#email-all-user>button').css("border", "1px solid black");  
+                    $('#email-all-user>button').css("background-color", "royalblue");      
+                }
+                else if(request=="view-approved-users")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-approved-users>button').css("border", "1px solid black");  
+                    $('#view-approved-users>button').css("background-color", "royalblue"); 
+                    dverify_user_now();      
+                }
+                else if(request=="view-pending-users")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-pending-users>button').css("border", "1px solid black");  
+                    $('#view-pending-users>button').css("background-color", "royalblue");
+                    verify_user_now();      
+                }
+                else if(request=="view-final-result")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-final-result>button').css("border", "1px solid black");  
+                    $('#view-final-result>button').css("background-color", "royalblue");      
+                }
+                else if(request=="view-detailed-result")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-detailed-result>button').css("border", "1px solid black");  
+                    $('#view-detailed-result>button').css("background-color", "royalblue");      
+                }
+                else if(request=="edit-questions")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#edit-questions>button').css("border", "1px solid black");  
+                    $('#edit-questions>button').css("background-color", "royalblue");   
+                    admin_edit_question();  
+                }
+                else if(request=="set-date-time")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#set-date-time>button').css("border", "1px solid black");  
+                    $('#set-date-time>button').css("background-color", "royalblue");   
+                    set_date_time();
+                }
+                else if(request=="remove-student")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#remove-student>button').css("border", "1px solid black");  
+                    $('#remove-student>button').css("background-color", "royalblue");
+                    remove_student();     
+                }
+                else
+                {
+                     alert("Something Went Wrong");
+                }
+            }   
         });
     });
 });
 
 
-function add_question_fun_check(){
-    alert("hello");
+function add_question(){
     $('.radio-check').change(function(){
         if($(this).attr("value")=="radiobox")
         {
@@ -133,38 +250,349 @@ function add_question_fun_check(){
                 option_d_ans = 1;
             }
         }
+        if($('#add-question-btn').attr('data')=="add-ques-btn")
+        {
+            $.ajax({
+                type : "POST",
+                url  : "../php/admin-preview-add-question-sub.php",
+                data : {
+                        question : btoa($("#textarea").val()),
+                        option_a : btoa($("#option-a").val()),
+                        option_b : btoa($("#option-b").val()),
+                        option_c : btoa($("#option-c").val()),
+                        option_d : btoa($("#option-d").val()),
+                        option_a_ans : btoa(option_a_ans),
+                        option_b_ans : btoa(option_b_ans),
+                        option_c_ans : btoa(option_c_ans),
+                        option_d_ans : btoa(option_d_ans),
+                        is_radiobox  : btoa(is_radiobox),
+                        is_checkbox  : btoa(is_checkbox),
+                },
+                cache : false,
+                beforeSend : function(){
+                    document.getElementById("add-question-btn").innerHTML = "Adding...";  
+                },
+                success: function(response)
+                {
+                    document.getElementById("add-question-btn").innerHTML = response;
+                    $("#add-question-form")[0].reset();
+                    setTimeout(function(){
+                        document.getElementById("add-question-btn").innerHTML = "Add Question"; 
+                    }, 3000);
+                    return false;
+                }
+            });
+        }
+        else
+        {
+            $.ajax({
+                type : "POST",
+                url  : "../php/admin-preview-edit-question-sub-two.php",
+                data : {
+                        quesid   : btoa($('#add-question-btn').attr("data")),
+                        question : btoa($("#textarea").val()),
+                        option_a : btoa($("#option-a").val()),
+                        option_b : btoa($("#option-b").val()),
+                        option_c : btoa($("#option-c").val()),
+                        option_d : btoa($("#option-d").val()),
+                        option_a_ans : btoa(option_a_ans),
+                        option_b_ans : btoa(option_b_ans),
+                        option_c_ans : btoa(option_c_ans),
+                        option_d_ans : btoa(option_d_ans),
+                        is_radiobox  : btoa(is_radiobox),
+                        is_checkbox  : btoa(is_checkbox),
+                },
+                cache : false,
+                beforeSend : function(){
+                    document.getElementById("add-question-btn").innerHTML = "Updating...";  
+                },
+                success: function(response)
+                {
+                    document.getElementById("add-question-btn").innerHTML = response;
+                    setTimeout(function(){
+                        $('#edit-questions').click();
+                    }, 2000);
+                }
+            });
+        }
+        
+    });
 
+}
+
+
+function admin_edit_question(){
+    $('.edit-ques').click(function(){
         $.ajax({
             type : "POST",
-            url  : "../php/admin-preview-add-question-sub.php",
+            url  : "admin-preview-edit-questions-sub.php",
             data : {
-                    question : btoa($("#textarea").val()),
-                    option_a : btoa($("#option-a").val()),
-                    option_b : btoa($("#option-b").val()),
-                    option_c : btoa($("#option-c").val()),
-                    option_d : btoa($("#option-d").val()),
-                    option_a_ans : btoa(option_a_ans),
-                    option_b_ans : btoa(option_b_ans),
-                    option_c_ans : btoa(option_c_ans),
-                    option_d_ans : btoa(option_d_ans),
-                    is_radiobox  : btoa(is_radiobox),
-                    is_checkbox  : btoa(is_checkbox),
+                quesid : $(this).attr('data')
             },
             cache : false,
-            beforeSend : function(){
-                document.getElementById("add-question-btn").innerHTML = "Adding...";  
-            },
+            processType : true,
             success: function(response)
             {
-                document.getElementById("add-question-btn").innerHTML = response;
+                document.getElementById("view-all-ajax-preview-output").innerHTML= response.trim();
+                add_question();
+            }
+        });
+    });
+}
+
+
+function verify_user_now(){
+    $('.uverify').click(function(e){
+        var uverify = $(this).attr("data");
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-verify-user-now.php",
+            data : {
+                request : uverify
+            },
+            cache : false,
+            processType : true,
+            beforeSend : function(){
+                
+            },
+            success : function(response){
+                if(response=="success")
+                {
+                    $('#view-pending-users').click();
+                }
+            }
+        });
+    });
+}
+
+
+function dverify_user_now(){
+    $('.dverify').click(function(e){
+        var dverify = $(this).attr("data");
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-dverify-user-now.php",
+            data : {
+                request : dverify
+            },
+            cache : false,
+            processType : true,
+            beforeSend : function(){
+                
+            },
+            success : function(response){
+                if(response=="success")
+                {
+                    $('#view-approved-users').click();
+                }
+            }
+        });
+    });
+}
+
+function set_date_time(){
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        var minDate= year + '-' + month + '-' + day;
+        $('#date-span').attr('min', minDate);
+    
+
+
+    $('#set-time-btn').click(function(){
+        var edate = $('#date-span').val();
+        var stime = $('#start-time-span').val();
+        var etime = $('#end-time-span').val();
+        
+        if(edate!="")
+        {
+            if(stime!="" && etime!="")
+            {
+                if(etime>stime)
+                {
+                    ajax_set_date_time();
+                }
+                else
+                {
+                    date_time_invalid();
+                }
+            }
+            else
+            {
+                date_time_invalid();
+            }
+        }
+        else
+        {
+            date_time_invalid();
+        }
+
+        function ajax_set_date_time(){
+           var d1 = new Date(edate +" "+ stime);
+           var d2 = new Date(edate +" "+ etime);
+           var tm = (d2.getTime() - d1.getTime())/60000;
+
+            $.ajax({
+                type : "POST",
+                url  : "admin-preview-set-date-time-sub.php",
+                data : {
+                    edate  : edate,
+                    stime  : stime,
+                    etime  : etime,
+                    tminute : tm
+                },
+                cache : false,
+                processType : true,
+                beforeSend : function(){
+                    document.getElementById("set-time-btn").innerHTML = "Updating.....";
+                },
+                success : function(response){
+                    if(response=="success")
+                    {
+                        document.getElementById("set-time-btn").innerHTML = "Suceesfully Updated";
+                        $("#set-time-btn").css("background-color", "green");
+                        setTimeout(function(){
+                            document.getElementById("set-time-btn").innerHTML = "Set Exam Time"; 
+                            $("#set-time-btn").css("background-color", "");
+                        }, 2500);
+                    }
+                }
+            });
+        }
+
+        function date_time_invalid(){
+                document.getElementById("set-time-btn").innerHTML = "Invalid Date/Time";
+                $("#set-time-btn").css("background-color", "rgb(255, 65, 7)");
                 setTimeout(function(){
-                    document.getElementById("add-question-btn").innerHTML = "Add Question"; 
-                }, 3000);
-                return false;
+                    document.getElementById("set-time-btn").innerHTML = "Set Exam Time"; 
+                    $("#set-time-btn").css("background-color", "");
+                }, 1500);
+        }
+    });
+}
+
+
+function remove_student(){
+    $('.rm-student').click(function(){
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-remove-student-sub.php",
+            data : {
+                usermail  : $(this).attr("data")
+            },
+            cache : false,
+            processType : true,
+            success : function(response){
+                if(response=="success")
+                {
+                    $('#remove-student').click();
+                }
+            }
+        });
+    });
+}
+
+function delete_question(){
+    $('.del-question').click(function(){
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-delete-questions-sub.php",
+            data : {
+                quesid  : $(this).attr("data")
+            },
+            cache : false,
+            processType : true,
+            success : function(response){
+                if(response=="success")
+                {
+                    $('#delete-questions').click();
+                }
+            }
+        });
+    });
+}
+
+
+function edit_student(){
+    $('.edit-stu').click(function(){
+        var edit_id = $(this).attr("data");
+        if($("[data='"+edit_id+"']").html().trim()=="Save")
+        {
+            if($("[login_id='"+edit_id+"']").eq(0).html()!="")
+            {
+                $("[login_id='"+edit_id+"']").eq(0).css("border", "");
+                if($("[login_id='"+edit_id+"']").eq(1).html()!="")
+                {
+                    $("[login_id='"+edit_id+"']").eq(1).css("border", "");
+                    if($("[login_id='"+edit_id+"']").eq(2).html()!="")
+                    {
+                        $("[login_id='"+edit_id+"']").eq(2).css("border", "");
+                        edit_stu_submit(edit_id);
+                    }
+                    else
+                    {
+                        $("[login_id='"+edit_id+"']").eq(2).css("border", "2px dashed red");
+                    }
+                }
+                else
+                {
+                    $("[login_id='"+edit_id+"']").eq(1).css("border", "2px dashed red");
+                }
+            }
+            else
+            {
+                $("[login_id='"+edit_id+"']").eq(0).css("border", "2px dashed red");
+            }
+        }
+        $('.edit-stu-check').css("color", "black");
+        $(".edit-stu").css("color", "red");
+        $('.edit-stu').html("Edit");
+        $('.edit-stu').attr("edit", "no");
+        $(".edit-stu-check").attr("contenteditable", false);
+        $(this).html("Save");
+        $(this).attr("edit", "yes");    
+        $("[login_id='"+edit_id+"']").attr("contenteditable", true);
+        $("[login_id='"+edit_id+"']").css("color", "red");
+        $("[data='"+edit_id+"']").css("color", "green");
+        $('.edit-stu-check').on("input",function(){
+            if($(this).html()=="")
+            {
+                $("[data='"+edit_id+"']").css("cursor", "not-allowed");
+                $(this).css("border", "2px dashed red");
+            }
+            else
+            {
+                $("[data='"+edit_id+"']").css("cursor", "pointer");
+                $(this).css("border", "");
             }
         });
     });
 
+    function edit_stu_submit(edit_id){
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-edit-student-details-sub.php",
+            data : {
+                editid  : edit_id,
+                name    : $("[login_id='"+edit_id+"']").eq(0).html(),
+                roll    : $("[login_id='"+edit_id+"']").eq(1).html(), 
+                mobile : $("[login_id='"+edit_id+"']").eq(2).html()
+            },
+            cache : false,
+            processType : true,
+            success : function(response){
+                $("[data='"+edit_id+"']").html(response);
+                setTimeout(function(){
+                    $("[data='"+edit_id+"']").html("Save"); 
+                }, 2000);
+            }
+        });
+    }
 }
 
 
