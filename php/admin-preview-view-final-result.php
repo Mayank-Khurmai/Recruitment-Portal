@@ -16,6 +16,7 @@ else
 		private $response_a;
 		private $response;
 		private $data;
+		private $data_b;
 
 		
 
@@ -39,7 +40,7 @@ else
 			
 		}	
 	}
-
+}
 	new admin_preview_view_detailed_result();
 	
 }
