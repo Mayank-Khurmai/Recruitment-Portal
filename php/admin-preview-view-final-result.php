@@ -19,7 +19,7 @@ else
 		private $data_b;
 
 		
-
+$omarks+=$x;
 		function __construct(){
 			$this->db = new db();
 			$this->db = $this->db->database();
