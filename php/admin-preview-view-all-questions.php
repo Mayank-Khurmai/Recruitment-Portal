@@ -40,22 +40,23 @@
                                 <tr>
                                     <th width='12%' bgcolor='gray'>Question - ".$x."</th>
                                     <td bgcolor='gray'><b>".$this->data['question']."</b></td>
+                                    <td bgcolor='gray' width='12%'><b>Ques ID - ".$this->data['ques_id']."</b></td>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>A</th>
-                                    <td bgcolor='".$a."'>".$this->data['option_a']."</td>
+                                    <td bgcolor='".$a."' colspan='2'>".$this->data['option_a']."</td>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>B</th>      
-                                    <td bgcolor='".$b."'>".$this->data['option_b']."</td>
+                                    <td bgcolor='".$b."' colspan='2'>".$this->data['option_b']."</td>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>C</th>
-                                    <td bgcolor='".$c."'>".$this->data['option_c']."</td>
+                                    <td bgcolor='".$c."' colspan='2'>".$this->data['option_c']."</td>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>D</th>
-                                    <td bgcolor='".$d."'>".$this->data['option_d']."</td>
+                                    <td bgcolor='".$d."' colspan='2'>".$this->data['option_d']."</td>
                                 </tr>
                             </table>
                             <br><br>

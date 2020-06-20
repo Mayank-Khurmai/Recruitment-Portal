@@ -23,13 +23,16 @@ else
 			if($this->response->num_rows != 0)
 			{
                 echo "<table border='1px' cellspacing='1px' cellpadding='4px' style='width:100%;'>";
-                echo "<tr style='background-color:yellow'><th width='10%'>Serial No.</th><th>Question</th><th width='10%'>Delete</th></tr>";
+                echo "<tr style='background-color:yellow'><th width='10%'>Question No.</th><th width='10%'>Ques ID</th><th>Question</th><th width='10%'>Delete</th></tr>";
                 $x=1;
                 while($data = $this->response->fetch_assoc())
                 {
-					echo "<tr><th>".$x."</th>
+					echo "<tr>
+						  <th>".$x."</th>
+						  <th>".$data['ques_id']."</th>
 						  <td style='padding-left:10px'>".$data['question']."</td>
-						  <th><span style='cursor:pointer; color:red;' data='".$data['ques_id']."' class='del-question'>Delete</span></th></tr>";
+						  <th><span style='cursor:pointer; color:red;' data='".$data['ques_id']."' class='del-question'>Delete</span></th>
+						  </tr>";
 					$x++;
                 }
                 echo "</table>";

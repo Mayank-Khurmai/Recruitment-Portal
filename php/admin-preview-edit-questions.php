@@ -40,11 +40,12 @@
                                 <tr>
                                     <th width='12%' bgcolor='gray'>Question - ".$x."</th>
                                     <td bgcolor='gray'><b>".$this->data['question']."</b></td>
-                                    <th width='12%' rowspan='5'><span style='cursor:pointer; color:red;' class='edit-ques' data='".$this->data['ques_id']."'>Edit</span></th>
+                                    <td bgcolor='gray' width='12%'><b>Ques ID - ".$this->data['ques_id']."</b></td>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>A</th>
                                     <td bgcolor='".$a."'>".$this->data['option_a']."</td>
+                                    <th width='12%' rowspan='4'><span style='cursor:pointer; color:red;' class='edit-ques' data='".$this->data['ques_id']."'>Edit</span></th>
                                 </tr>
                                 <tr>
                                     <th bgcolor='gray'>B</th>      
