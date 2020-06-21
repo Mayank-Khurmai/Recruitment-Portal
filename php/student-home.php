@@ -53,7 +53,14 @@
         <div class="logo-name-div">
             <div style="float:left"><img src="../images/logo.png" width="40px" height="40px" style="border-radius:50%"></div>
             <div style="float:left; padding:5px">Open Source Software Research &amp; Development Centre</div>
-            <div style="float:right; padding:5px">Time Left &nbsp;<b><span id="minute-span">60</span> : <span id="second-span">00</span></b></div>
+            <div style="float:right; padding:5px">Time Left &nbsp;<b>
+                <!-- <span id="minute-span">60</span> : <span id="second-span">00</span></b> -->
+                <?php
+
+                require("student-time-remain.php");
+
+                ?>
+            </div>
         </div>
 </div>
 <!-- Nav Bar Coding End-->
