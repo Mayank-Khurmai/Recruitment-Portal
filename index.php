@@ -10,61 +10,77 @@
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/main.js"></script>
 </head>
-<body onload="onbodyload()">
+<body>
   
-<!-- Loader Coding Start
-<div id="my-loader">
+<!-- Loader Coding Start -->
+<!-- <div id="my-loader">
         <div class="my-loader-div">
             <img src="images/logo.png" class="loader-logo" alt="FLUX">
         <div class="loader"></div>
         </div>
-</div>
- Loader Coding End-->
-
+</div> -->
+ <!-- Loader Coding End -->
 
 
 <!-- Main Body Coding Start-->
+
+<!-- Nav Bar Coding Start-->
+<div class="navbar-div">
+        <div class="logo-name-div">
+            <div style="float:left"><img src="images/logo.png" width="40px" height="40px" style="border-radius:50%"></div>
+            <div style="float:left; padding:5px">Open Source Software Research &amp; Development Centre</div>
+        </div>
+</div>
+<!-- Nav Bar Coding End-->
+
+
+<!-- Section Coding Start -->
+
 <div id="full-body">
-
     <div class="login-form-div">
-        <div class="heading-div">
-            <span class="confirm-login-heading">Confirm your Credentials</span>
-        </div>
-        <div class="user-logo-div"></div>
-        <div class="form-div">
-            <form method="post">
-                <div class="email-form-div">
-                    <div class="user-id-div"> 
+            <div class="heading-div">
+                <span class="confirm-login-heading">Confirm your Credentials</span>
+            </div>
+            <div class="user-logo-div"></div>
+            <div class="form-div">
+                <form method="post" autocomplete="off">
+                    <div class="email-form-div">
+                        <div class="user-id-div"> 
+                        </div>
+                        <div class="user-id-input-div"> 
+                            <input type="email" id="input-mail" placeholder="Email Id">
+                        </div>
                     </div>
-                    <div class="user-id-input-div"> 
-                        <input type="email" id="input-mail" placeholder="Email Id">
+                    <br><br>
+                    <div class="pass-form-div">
+                        <div class="user-key-div"> 
+                        </div>
+                        <div class="user-key-input-div"> 
+                            <input type="password" id="input-pass" placeholder="Password">
+                        </div>
                     </div>
-                </div>
-                <br><br>
-                <div class="pass-form-div">
-                    <div class="user-key-div"> 
+                    <br><br>
+                    <div class="submit-div">
+                        <button type="submit" id="submit-div-btn">Login</button>
                     </div>
-                    <div class="user-key-input-div"> 
-                        <input type="password" id="input-pass" placeholder="Password">
+                    <div class="loading-error-div">
+                        <span id="error-msg">Invalid Login! Please try Again...</span>
                     </div>
-                </div>
-                <br><br>
-                <div class="submit-div">
-                    <button type="submit" id="submit-div-btn">Login</button>
-                </div>
-                <div class="loading-error-div">
-                    <span id="error-msg">Invalid Login! Please try Again...</span>
-                    <div id="login-check"></div> 
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
 
-        <div class="oss-name-div">
-              <span class="oss-name-text">Open Source Software Research &amp; Development Centre</span>   
+        
         </div>
-    </div>
 
 </div>
+
+<!-- Section Coding End -->
+
+
+<!-- Footer Coding Start -->
+<footer class="footer-div-design"></footer>
+<!-- Footer Coding End -->
+    
 <!-- Main Body Coding End-->
 
 <!-- jQuery Coding Start-->
@@ -83,16 +99,15 @@ $(document).ready(function() {
             },
             cache : false,
             beforeSend : function(){
-                    document.getElementById("login-check").style.display = "block";
+                document.getElementById("submit-div-btn").innerHTML = "<div id='login-check'></div>";
             },
             success: function(response)
             {
               if(response.trim()=="success"){
-                document.getElementById("login-check").style.display = "none";
                 window.location = "php/student-after-login.php";
               }
               else{
-                document.getElementById("login-check").style.display = "none";
+                document.getElementById("submit-div-btn").innerHTML = "Login";
                 document.getElementById("error-msg").style.display = "block";
               }
               return false;
