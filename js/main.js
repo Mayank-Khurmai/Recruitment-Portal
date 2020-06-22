@@ -1,15 +1,3 @@
-function onbodyload(){
-    setTimeout(afterloader, 300);
-
-}
-
-
-function afterloader(){
-    document.getElementById("my-loader").style.display = "none";
-    document.getElementById("full-body").style.display = "block";
-}
-
-
 $(document).ready(function(){
     $('.ques-no-id').click(function(){
         var question = $(this).attr('question');
@@ -114,7 +102,50 @@ $(document).ready(function(){
 });
 
 
+function time_fun()
+{
+    var m = $("#minute-span").html();
+    var s = $("#second-span").html();
+    setInterval(() => {
+        if(s<10)
+        {
+            if(s<0)
+            {
+                s=59;
+                m--;
+                $("#second-span").html(s);
+                $("#minute-span").html(m);
+            }
+            else
+            {
+                $("#second-span").html('0'+s);
+            }
+        }
+        else
+        {
+            $("#second-span").html(s);
+        }
+        s--;
+    }, 1000);
+}
+
+
+function time_update(){
+    $.ajax({
+        type : "POST",
+        url  : "student-time-update.php",
+        data : {
+            m : $("#minute-span").html(),
+            s : $("#second-span").html()
+        },
+        cache : false,
+        processType : true,
+    }); 
+}
+
+
 function test_start_fun(){
+    time_fun();
     $('.blurr-div-outer-box').fadeOut("2000");
     $('.question-no-box:first').click();
     $('.question-no-box:first').attr("visited", 1);
