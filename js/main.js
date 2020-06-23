@@ -1,3 +1,32 @@
+// function onbodyloadstart(){
+//     var docElm = document.documentElement;
+//         if (docElm.requestFullscreen) {
+//             docElm.requestFullscreen();
+//         }
+//         else if (docElm.mozRequestFullScreen) {
+//             docElm.mozRequestFullScreen();
+//         }
+//         else if (docElm.webkitRequestFullScreen) {
+//             docElm.webkitRequestFullScreen();
+//         }
+// }
+
+// $(document).ready(function(){
+//     setInterval(() => {
+//         var docElm = document.documentElement;
+//         if (docElm.requestFullscreen) {
+//             docElm.requestFullscreen();
+//         }
+//         else if (docElm.mozRequestFullScreen) {
+//             docElm.mozRequestFullScreen();
+//         }
+//         else if (docElm.webkitRequestFullScreen) {
+//             docElm.webkitRequestFullScreen();
+//         }
+//     }, 100);
+// });
+
+
 $(document).ready(function(){
     $('.ques-no-id').click(function(){
         var question = $(this).attr('question');
@@ -100,6 +129,70 @@ $(document).ready(function(){
         new_visit(quesid);
     });
 });
+  
+
+$(document).keydown(function(e){
+    if(e.which === 123){
+       return false;
+    }
+    if(e.which === 122){
+        return false;
+    }
+    if(e.which === 27 || e.charCode===27 || e.keyCode===27 ){
+        return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'R'.charCodeAt(0)){
+    location.reload();
+    }
+    if(e.ctrlKey && e.keyCode == 'R'.charCodeAt(0)){
+    return false;
+    }
+});
+
+
+document.addEventListener("fullscreenchange", function() {
+    setInterval(() => {
+        var docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
+    }, 100);
+  });
+
+
+function student_logout(){
+    location.replace("student-submit-logout.php");
+}
 
 
 function time_fun()
@@ -126,21 +219,24 @@ function time_fun()
             $("#second-span").html(s);
         }
         s--;
+        if(m==0 && s==0){student_logout()}
     }, 1000);
-}
 
+    function time_update(){
+        $.ajax({
+            type : "POST",
+            url  : "student-time-update.php",
+            data : {
+                usermail : $("#usermail-div").attr("userid"),
+                m : $("#minute-span").html(),
+                s : $("#second-span").html()
+            },
+            cache : false,
+            processType : true
+        }); 
+    }
 
-function time_update(){
-    $.ajax({
-        type : "POST",
-        url  : "student-time-update.php",
-        data : {
-            m : $("#minute-span").html(),
-            s : $("#second-span").html()
-        },
-        cache : false,
-        processType : true,
-    }); 
+    setInterval(time_update, 10000);
 }
 
 
@@ -327,5 +423,23 @@ $(document).ready(function(){
                 }, 2000);
             }
         }
+    });
+});
+
+
+$(document).ready(function(){
+    $(".exam-submit").on("click", function(){
+        if($(".exam-submit").attr("value")=="Submit")
+        {
+            $(".exam-submit").attr("value","Click Again to Confirm"); 
+            setInterval(() => {
+                $(".exam-submit").attr("value","Submit"); 
+            }, 2500);
+        }
+        else
+        {
+            student_logout();
+        }
+         
     });
 });
