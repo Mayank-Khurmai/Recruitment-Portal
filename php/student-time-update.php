@@ -2,38 +2,38 @@
 
 	require("database-connection.php");
 	
-	class clear_response{
+	class update_time{
 		private $usermail;
-        private $quesid;
+        private $m;
+        private $s;
 		private $db;
         private $query;
-		function __construct($usermail,$quesid){
+		function __construct($usermail,$m,$s){
 			$this->db = new db();
             $this->db = $this->db->database();
             $this->usermail = $usermail;
-            $this->quesid = $quesid;
+            $this->m = $m;
+            $this->s = $s;
 			
-            $this->query = "UPDATE exam_result SET marked='0', reviewed='0', option_a_final_ans = '0',
-                            option_b_final_ans = '0', option_c_final_ans = '0' , option_d_final_ans = '0' 
-                            WHERE email = '$usermail' AND ques_id = '$quesid'";
+            $this->query = "UPDATE exam_time SET minute_remain='$m', second_remain = '$s' 
+                            WHERE email = '$usermail'";
 
-            if($this->db->query($this->query))
-            {
-                echo "success";
-            }
-            else
-            {
-                echo "failed";
-            }
+            $this->db->query($this->query);
 		}
 	}
 
 	class main{
 		private $usermail;
-        private $quesid;
+        private $m;
+        private $s;
 		function __construct(){
             $this->usermail = trim($_POST['usermail']);
-            $this->quesid = tri
+            $this->m = trim($_POST['m']);
+            $this->s = trim($_POST['s']);
+            new update_time(
+                             $this->usermail,
+                             $this->m,
+                             $this->s
                             );
 		}
 	}
