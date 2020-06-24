@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/font-awesome.css">
 
     <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
   
@@ -38,40 +38,14 @@
 
 <div id="full-body">
     <div class="login-form-div">
-            <div class="heading-div">
-                <span class="confirm-login-heading">Confirm your Credentials</span>
-            </div>
-            <div class="user-logo-div"></div>
-            <div class="form-div">
-                <form method="post" autocomplete="off">
-                    <div class="email-form-div">
-                        <div class="user-id-div"> 
-                        </div>
-                        <div class="user-id-input-div"> 
-                            <input type="email" id="input-mail" placeholder="Email Id">
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="pass-form-div">
-                        <div class="user-key-div"> 
-                        </div>
-                        <div class="user-key-input-div"> 
-                            <input type="password" id="input-pass" placeholder="Password">
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="submit-div">
-                        <button type="submit" id="submit-div-btn">Login</button>
-                    </div>
-                    <div class="loading-error-div">
-                        <span id="error-msg">Invalid Login! Please try Again...</span>
-                    </div>
-                </form>
-            </div>
+           
+        <?php
 
+            require("php/student-index-check-date.php");
+
+        ?>
         
-        </div>
-
+    </div>
 </div>
 
 <!-- Section Coding End -->
@@ -83,41 +57,5 @@
     
 <!-- Main Body Coding End-->
 
-<!-- jQuery Coding Start-->
-
-<script>
-
-$(document).ready(function() {
-    $('#submit-div-btn').click(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type : "POST",
-            url  : "php/student-login-check.php",
-            data : {
-                    username : btoa($("#input-mail").val()),
-                    password : btoa($("#input-pass").val())
-            },
-            cache : false,
-            beforeSend : function(){
-                document.getElementById("submit-div-btn").innerHTML = "<div id='login-check'></div>";
-            },
-            success: function(response)
-            {
-              if(response.trim()=="success"){
-                window.location = "php/student-after-login.php";
-              }
-              else{
-                document.getElementById("submit-div-btn").innerHTML = "Login";
-                document.getElementById("error-msg").style.display = "block";
-              }
-              return false;
-            }
-        });
-    });
-});
-
-</script>
-
-<!-- jQuery Coding Start-->
 </body>
 </html>
