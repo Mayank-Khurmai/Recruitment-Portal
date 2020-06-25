@@ -1,30 +1,30 @@
-// function onbodyloadstart(){
-//     var docElm = document.documentElement;
-//         if (docElm.requestFullscreen) {
-//             docElm.requestFullscreen();
-//         }
-//         else if (docElm.mozRequestFullScreen) {
-//             docElm.mozRequestFullScreen();
-//         }
-//         else if (docElm.webkitRequestFullScreen) {
-//             docElm.webkitRequestFullScreen();
-//         }
-// }
+function onbodyloadstart(){
+    var docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
+}
 
-// $(document).ready(function(){
-//     setInterval(() => {
-//         var docElm = document.documentElement;
-//         if (docElm.requestFullscreen) {
-//             docElm.requestFullscreen();
-//         }
-//         else if (docElm.mozRequestFullScreen) {
-//             docElm.mozRequestFullScreen();
-//         }
-//         else if (docElm.webkitRequestFullScreen) {
-//             docElm.webkitRequestFullScreen();
-//         }
-//     }, 100);
-// });
+$(document).ready(function(){
+    setInterval(() => {
+        var docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
+    }, 100);
+});
 
 
 $(document).ready(function(){
@@ -197,8 +197,8 @@ function student_logout(){
 
 function time_fun()
 {
-    var m = $("#minute-span").html();
-    var s = $("#second-span").html();
+    var m = Number($("#minute-span").html());
+    var s = Number($("#second-span").html());
     setInterval(() => {
         if(s<10)
         {
@@ -207,7 +207,12 @@ function time_fun()
                 s=59;
                 m--;
                 $("#second-span").html(s);
-                $("#minute-span").html(m);
+                if(m<10){
+                    $("#minute-span").html('0'+m);   
+                }
+                else{
+                    $("#minute-span").html(m);
+                }
             }
             else
             {
@@ -228,15 +233,15 @@ function time_fun()
             url  : "student-time-update.php",
             data : {
                 usermail : $("#usermail-div").attr("userid"),
-                m : $("#minute-span").html(),
-                s : $("#second-span").html()
+                m : Number($("#minute-span").html()),
+                s : Number($("#second-span").html())
             },
             cache : false,
             processType : true
         }); 
     }
 
-    setInterval(time_update, 10000);
+    setInterval(time_update, 5000);
 }
 
 
