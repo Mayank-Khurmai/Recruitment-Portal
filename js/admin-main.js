@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('.admin-preview-index').click(function(e){
         var request = $(this).attr('id');
+        $(".category-no").attr("current", request)
         e.preventDefault();
         $.ajax({
             type : "POST",
@@ -22,7 +23,10 @@ $(document).ready(function() {
                     $('#view-approved-users>button').css("border", "1px solid black");  
                     $('.add-question>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('#add-question>button').css("background-color", "royalblue");
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                     add_question();
+
                 } 
                 else if(request=="admin-home")
                 {
@@ -30,6 +34,8 @@ $(document).ready(function() {
                     $('.admin-preview-index>button').css("background-color","");
                     $('#admin-home>button').css("border", "1px solid black");  
                     $('#admin-home>button').css("background-color", "royalblue");  
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                 } 
                 else if(request=="view-all-user")
                 {
@@ -37,6 +43,8 @@ $(document).ready(function() {
                     $('.admin-preview-index>button').css("background-color","");
                     $('#view-all-user>button').css("border", "1px solid black");  
                     $('#view-all-user>button').css("background-color", "royalblue");  
+                    $("#download").removeAttr("disabled");
+                    $("#print").removeAttr("disabled");
                 }
                 else if(request=="view-all-questions")
                 {
@@ -44,6 +52,8 @@ $(document).ready(function() {
                     $('.admin-preview-index>button').css("background-color","");
                     $('#view-all-questions>button').css("border", "1px solid black");  
                     $('#view-all-questions>button').css("background-color", "royalblue");    
+                    $("#download").removeAttr("disabled");
+                    $("#print").removeAttr("disabled");
                 }
                 else if(request=="delete-questions")
                 {
@@ -52,13 +62,17 @@ $(document).ready(function() {
                     $('#delete-questions>button').css("border", "1px solid black");  
                     $('#delete-questions>button').css("background-color", "royalblue");     
                     delete_question();
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                 }
                 else if(request=="email-single-user")
                 {
                     $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('.admin-preview-index>button').css("background-color","");
                     $('#email-single-user>button').css("border", "1px solid black");  
-                    $('#email-single-user>button').css("background-color", "royalblue");      
+                    $('#email-single-user>button').css("background-color", "royalblue");  
+                    $("#download").attr("disabled","disabled");    
+                    $("#print").attr("disabled","disabled");
                 }
                 else if(request=="edit-student-details")
                 {
@@ -67,13 +81,36 @@ $(document).ready(function() {
                     $('#edit-student-details>button').css("border", "1px solid black");  
                     $('#edit-student-details>button').css("background-color", "royalblue");      
                     edit_student();
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                 }
                 else if(request=="email-all-user")
                 {
                     $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('.admin-preview-index>button').css("background-color","");
                     $('#email-all-user>button').css("border", "1px solid black");  
-                    $('#email-all-user>button').css("background-color", "royalblue");      
+                    $('#email-all-user>button').css("background-color", "royalblue");   
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");   
+                }
+                else if(request=="view-admin-members")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#view-admin-members>button').css("border", "1px solid black");  
+                    $('#view-admin-members>button').css("background-color", "royalblue");     
+                    $("#download").removeAttr("disabled"); 
+                    $("#print").removeAttr("disabled");
+                }
+                else if(request=="add-admin-members")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#add-admin-members>button').css("border", "1px solid black");  
+                    $('#add-admin-members>button').css("background-color", "royalblue");   
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
+                    add_a_member();   
                 }
                 else if(request=="view-approved-users")
                 {
@@ -81,6 +118,8 @@ $(document).ready(function() {
                     $('.admin-preview-index>button').css("background-color","");
                     $('#view-approved-users>button').css("border", "1px solid black");  
                     $('#view-approved-users>button').css("background-color", "royalblue"); 
+                    $("#download").removeAttr("disabled");
+                    $("#print").removeAttr("disabled");
                     dverify_user_now();      
                 }
                 else if(request=="view-pending-users")
@@ -90,27 +129,45 @@ $(document).ready(function() {
                     $('#view-pending-users>button').css("border", "1px solid black");  
                     $('#view-pending-users>button').css("background-color", "royalblue");
                     verify_user_now();      
+                    $("#download").removeAttr("disabled");
+                    $("#print").removeAttr("disabled");
+                }
+                else if(request=="remove-admin-members")
+                {
+                    $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
+                    $('.admin-preview-index>button').css("background-color","");
+                    $('#remove-admin-members>button').css("border", "1px solid black");  
+                    $('#remove-admin-members>button').css("background-color", "royalblue");
+                    rm_admin();
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                 }
                 else if(request=="view-final-result")
                 {
                     $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('.admin-preview-index>button').css("background-color","");
                     $('#view-final-result>button').css("border", "1px solid black");  
-                    $('#view-final-result>button').css("background-color", "royalblue");      
+                    $('#view-final-result>button').css("background-color", "royalblue");   
+                    $("#download").removeAttr("disabled"); 
+                    $("#print").removeAttr("disabled");  
                 }
                 else if(request=="view-detailed-result")
                 {
                     $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('.admin-preview-index>button').css("background-color","");
                     $('#view-detailed-result>button').css("border", "1px solid black");  
-                    $('#view-detailed-result>button').css("background-color", "royalblue");      
+                    $('#view-detailed-result>button').css("background-color", "royalblue");     
+                    $("#download").removeAttr("disabled"); 
+                    $("#print").removeAttr("disabled");
                 }
                 else if(request=="edit-questions")
                 {
                     $('.admin-preview-index>button').css("border", "1px solid rgb(163, 163, 163)");
                     $('.admin-preview-index>button').css("background-color","");
                     $('#edit-questions>button').css("border", "1px solid black");  
-                    $('#edit-questions>button').css("background-color", "royalblue");   
+                    $('#edit-questions>button').css("background-color", "royalblue"); 
+                    $("#print").attr("disabled","disabled");
+                    $("#download").attr("disabled","disabled");  
                     admin_edit_question();  
                 }
                 else if(request=="set-date-time")
@@ -120,6 +177,8 @@ $(document).ready(function() {
                     $('#set-date-time>button').css("border", "1px solid black");  
                     $('#set-date-time>button').css("background-color", "royalblue");   
                     set_date_time();
+                    $("#download").attr("disabled","disabled");
+                    $("#print").attr("disabled","disabled");
                 }
                 else if(request=="remove-student")
                 {
@@ -127,7 +186,9 @@ $(document).ready(function() {
                     $('.admin-preview-index>button').css("background-color","");
                     $('#remove-student>button').css("border", "1px solid black");  
                     $('#remove-student>button').css("background-color", "royalblue");
-                    remove_student();     
+                    remove_student();  
+                    $("#download").attr("disabled","disabled"); 
+                    $("#print").attr("disabled","disabled");  
                 }
                 else
                 {
@@ -137,6 +198,49 @@ $(document).ready(function() {
         });
     });
 });
+
+function add_a_member(){
+    $('.add-a-member-btn').on("click", function(){
+        var mail = $("#input-mail").val();
+        var name = $("#input-name").val();
+        var mobile = $("#input-mobile").val();
+        var pass = $("#input-pass").val();
+        var role  = $("#select-div").find(":selected").val();
+        
+        if(mail!="" && name!="" && mobile!="" && pass!=""){
+            $.ajax({
+                type : "POST",
+                url  : "../php/admin-preview-add-admin-member-sub.php",
+                data : {
+                        mail : btoa(mail),
+                        name : btoa(name),
+                        mobile : btoa(mobile),
+                        pass : btoa(pass),
+                        role : btoa(role),
+                },
+                cache : false,
+                beforeSend : function(){
+                    $("#add-member-btn").html("Adding...");
+                },
+                success: function(response)
+                {
+                    document.getElementById("add-member-btn").innerHTML = response;
+                    $("#add-admin-members").click();
+                    setTimeout(function(){
+                        document.getElementById("add-member-btn").innerHTML = "Add Admin"; 
+                    }, 3000);
+                }
+            });
+        }
+        else{
+                $("#add-member-btn").html("Invalid");
+                setTimeout(() => {
+                    $("#add-member-btn").html("Add Admin"); 
+                }, 2500);
+        }
+    
+    });
+}
 
 
 function add_question(){
@@ -335,6 +439,27 @@ function admin_edit_question(){
             {
                 document.getElementById("view-all-ajax-preview-output").innerHTML= response.trim();
                 add_question();
+            }
+        });
+    });
+}
+
+
+function rm_admin(){
+    $('.rm-admin').click(function(){
+        $.ajax({
+            type : "POST",
+            url  : "admin-preview-remove-admin-sub.php",
+            data : {
+                usermail  : $(this).attr("data")
+            },
+            cache : false,
+            processType : true,
+            success : function(response){
+                if(response=="success")
+                {
+                    $('#remove-admin-members').click();
+                }
             }
         });
     });
@@ -594,6 +719,75 @@ function edit_student(){
         });
     }
 }
+
+
+$(document).ready(function(){
+    $("#download").on("click", function(){
+        var x = $(".category-no").attr("current");
+       if(x=="view-all-user"){
+           window.open("download-view-all-users.php","_blank");
+       }
+       else if(x=="view-approved-users"){
+        window.open("download-view-all-approved-users.php","_blank");
+       }
+       else if(x=="view-pending-users"){
+        window.open("download-view-all-pending-users.php","_blank");
+       }
+       else if(x=="view-final-result"){
+        window.open("download-view-final-result.php","_blank");
+       }
+       else if(x=="view-detailed-result"){
+        window.open("download-view-detailed-result.php","_blank");
+       }
+       else if(x=="view-all-questions"){
+        window.open("download-view-all-questions.php","_blank");
+       }
+       else if(x=="view-admin-members"){
+        window.open("download-view-admin-members.php","_blank");
+       }
+       else{
+           alert("Error! Unable to Download File");
+       }
+    });
+});
+
+
+$(document).ready(function(){
+    $("#print").on("click", function(){
+        var x = $(".category-no").attr("current");
+       if(x=="view-all-user"){
+           window.open("print-view-all-users.php","_blank");
+       }
+       else if(x=="view-approved-users"){
+        window.open("print-view-all-approved-users.php","_blank");
+       }
+       else if(x=="view-pending-users"){
+        window.open("print-view-all-pending-users.php","_blank");
+       }
+       else if(x=="view-final-result"){
+        window.open("print-view-final-result.php","_blank");
+       }
+       else if(x=="view-detailed-result"){
+        window.open("print-view-detailed-result.php","_blank");
+       }
+       else if(x=="view-all-questions"){
+        window.open("print-view-all-questions.php","_blank");
+       }
+       else if(x=="view-admin-members"){
+        window.open("print-view-admin-members.php","_blank");
+       }
+       else{
+           alert("Error! Unable to Download File");
+       }
+    });
+});
+
+
+$(document).ready(function(){
+    $("#index-mail-btn").on("click", function(){
+       $("#email-single-user").click();
+    });
+});
 
 
 $(document).ready(function() {
