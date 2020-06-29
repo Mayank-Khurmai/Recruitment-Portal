@@ -17,7 +17,7 @@
             $this->username = mysqli_real_escape_string($this->db,$this->username);
             $this->password = $password;
             $this->password = mysqli_real_escape_string($this->db,$this->password);
-			$this->query = "SELECT * FROM login_info WHERE student_no ='$password' AND email='$username'";
+			$this->query = "SELECT * FROM login_info WHERE student_no ='$password' AND email='$username' AND status='Approved'";
             $this->response = $this->db->query($this->query);
 			if($this->response->num_rows != 0)
 			{

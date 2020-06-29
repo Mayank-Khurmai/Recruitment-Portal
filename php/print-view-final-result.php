@@ -1,13 +1,9 @@
 <?php
 
-if(!isset($_SESSION['adminmail']))
-{
-    header("Location: admin-panel-login-page.php");
-}
-else
-{
-    
+    require("../dompdf/autoload.inc.php");
+    use Dompdf\Dompdf;   
     require("database-connection.php");
+
 	
 	class admin_preview_view_detailed_result{
 		private $db;
@@ -129,7 +125,7 @@ else
 								$b = "style='background-color:green'";
 							}
 						}
-						echo "	<tr>
+						$temp =  "	<tr>
 								<td>".$studentno."</td>
 								<td>".$email."</td>
 								<th>".$omarks."</th>
@@ -138,11 +134,8 @@ else
 								<th ".$a.">".$percent."</th>
 								<th ".$b.">".$npercent."</th>
 								</tr>
-							";
-					}
-					else
-					{
-							echo "<tr><th colspan='7'>No Data Found</th></tr>";	
+                            ";
+                        return $temp;
 					}
 				}
 				//Function End
@@ -151,31 +144,38 @@ else
 
 		function __construct(){
 			$this->db = new db();
-			$this->db = $this->db->database();
+            $this->db = $this->db->database();
+            $xy = new Dompdf();
 
 			$this->query_a = "SELECT DISTINCT(email) FROM exam_result";
-			$this->response_a = $this->db->query($this->query_a);
+            $this->response_a = $this->db->query($this->query_a);
+            $design ="<h3 style='text-align:center;text-decoration: underline;'>View Final Result</h3>";
 			if($this->response_a->num_rows!=0)
 			{
-				echo "<table border='1px' cellspacing='1px' cellpadding='4px' style='width:100%;'>";
-				echo "<tr style='background-color:yellow'><th width='15%'>Student No.</th><th width='30%'>Email</th><th width='10%'>Positive Marking</th><th width='10%'>Negative Marking</th><th width='10%'>Total Marks</th><th width='10%'>Positive Percentage</th><th width='10%'>Negative Percentage</th></tr>";
+				$design .= "<table border='1px' cellspacing='1px' cellpadding='4px' style='width:100%;'>";
+				$design .= "<tr style='background-color:yellow'><th>Student No.</th><th>Email</th><th>Positive Marking</th><th>Negative Marking</th><th>Total Marks</th><th>Positive Percentage</th><th>Negative Percentage</th></tr>";
 						
 				while($data = $this->response_a->fetch_assoc())
 				{
 					$dmail = $data['email'];
-					$this->view_result($dmail);
+					$design .= $this->view_result($dmail);
 
 				}
 
-				echo "</table>";
+				$design .= "</table>";
 			}
 			else
 			{
-				echo "<table border='1px' cellspacing='1px' cellpadding='4px' style='width:100%;'>";
-				echo "<tr style='background-color:yellow'><th width='15%'>Student No.</th><th width='30%'>Email</th><th width='10%'>Positive Marking</th><th width='10%'>Negative Marking</th><th width='10%'>Total Marks</th><th width='10%'>Positive Percentage</th><th width='10%'>Negative Percentage</th></tr>";
-				echo "<tr><th colspan='7'>No Data Found</th></tr>";
-				echo "</table>";
-			}
+				$design .= "<table border='1px' cellspacing='1px' cellpadding='4px' style='width:100%;'>";
+				$design .= "<tr style='background-color:yellow'><th width='15%'>Student No.</th><th width='30%'>Email</th><th width='10%'>Positive Marking</th><th width='10%'>Negative Marking</th><th width='10%'>Total Marks</th><th width='10%'>Positive Percentage</th><th width='10%'>Negative Percentage</th></tr>";
+				$design .= "<tr><th colspan='7'>No Data Found</th></tr>";
+				$design .= "</table>";
+            }
+            $xy->loadHtml($design);
+            $xy->setPaper("A4","portrait");
+            $xy->render();
+            $xy->stream("view-final-result.pdf", array("Attachment" => false));
+			exit(0);
 
 
 			
@@ -184,6 +184,5 @@ else
 
 	new admin_preview_view_detailed_result();
 	
-}
 
 ?>

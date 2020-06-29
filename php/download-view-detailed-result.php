@@ -167,8 +167,8 @@
 							$omarks+=$x;
 							$tmarks+=4;
 							$negative+=$y;
-							$percent = ($omarks/$tmarks)*100;
-							$npercent =($negative/$tmarks)*100;
+							$percent = round(($omarks/$tmarks)*100,2);
+							$npercent = round(($negative/$tmarks)*100,2);
 							if($percent>33)
 							{
 								$p = "style='background-color:green'";

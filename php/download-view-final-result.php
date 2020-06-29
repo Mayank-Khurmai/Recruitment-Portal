@@ -114,8 +114,8 @@
 							$omarks+=$x;
 							$studentno=$data['student_no'];
 							$email=$data['email'];
-							$percent = ($omarks/$tmarks)*100;
-							$npercent =($negative/$tmarks)*100;
+							$percent = round(($omarks/$tmarks)*100,2);
+							$npercent = round(($negative/$tmarks)*100,2);
 							if($percent>33)
 							{
 								$a = "style='background-color:green'";

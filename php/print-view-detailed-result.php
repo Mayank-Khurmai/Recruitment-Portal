@@ -1,12 +1,7 @@
 <?php
 
-if(!isset($_SESSION['adminmail']))
-{
-    header("Location: admin-panel-login-page.php");
-}
-else
-{
-    
+    require("../dompdf/autoload.inc.php");
+    use Dompdf\Dompdf;   
     require("database-connection.php");
 	
 	class admin_preview_view_detailed_result{
@@ -30,7 +25,8 @@ else
 						$tmarks=0;
 						$percent=0;
 						$negative=0;
-						$npercent=0;
+                        $npercent=0;
+                        $temp="";
 						while($data = $this->response->fetch_assoc())
 						{
 							$x=0;
@@ -151,12 +147,10 @@ else
 							{
 								$reviewed = "Yes";
 							}
-							$weightage+=$y;
-							echo "	
-								<tr>
+                            $weightage+=$y;
+							$temp .= "
 								<tr>
 								<td style='padding-left:5px'>".$data['student_no']."</td>
-								<td style='padding-left:5px'>".$data['email']."</td>
 								<th style='padding-left:5px'>".$data['ques_id']."</th>
 								<th style='padding-left:5px'>".$visited."</th>
 								<th style='padding-left:5px'>".$attempted."</th>
@@ -168,15 +162,13 @@ else
 								<th style='padding-left:5px; ".$d."''>".$data['option_d_final_ans']."</th>
 								<th style='padding-left:5px;'>".$weightage."</th>
 								
-								
 							</tr>
-								</tr>
 							";
 							$omarks+=$x;
 							$tmarks+=4;
 							$negative+=$y;
 							$percent = round(($omarks/$tmarks)*100,2);
-							$npercent =round(($negative/$tmarks)*100,2);
+							$npercent = round(($negative/$tmarks)*100,2);
 							if($percent>33)
 							{
 								$p = "style='background-color:green'";
@@ -186,19 +178,16 @@ else
 								$n = "style='background-color:green'";
 							}
 						}
-						echo "
-								<tr><td style='border:none' colspan='12'></td></tr>
-								<tr><td style='border:none' colspan='7'></td><td colspan='4'><b>Positive Marking</b></td><th>".$omarks."</th></tr>
-								<tr><td style='border:none' colspan='7'></td><td colspan='4'><b>Negative Marking</b></td><th>".$negative."</th></tr>
-								<tr><td style='border:none' colspan='7'></td><td colspan='4'><b>Total Marks</b></td><th>".$tmarks."</th></tr>
-								<tr><td style='border:none' colspan='7'></td><td colspan='4' ".$p."><b>Positive Percentage</b></td><th ".$p.">".$percent."</th></tr>
-								<tr><td style='border:none' colspan='7'></td><td colspan='4' ".$n."><b>Negative Percentage</b></td><th ".$n.">".$npercent."</th></tr>
-								</tr>
-							";
-					}
-					else
-					{
-							echo "<tr><th colspan='12'>No Data Found</th></tr>";	
+						$temp .=  "
+								<tr><td style='border:none' colspan='11'></td></tr>
+								<tr><td style='border:none' colspan='6'></td><td colspan='4'><b>Positive Marking</b></td><th>".$omarks."</th></tr>
+								<tr><td style='border:none' colspan='6'></td><td colspan='4'><b>Negative Marking</b></td><th>".$negative."</th></tr>
+								<tr><td style='border:none' colspan='6'></td><td colspan='4'><b>Total Marks</b></td><th>".$tmarks."</th></tr>
+								<tr><td style='border:none' colspan='6'></td><td colspan='4' ".$p."><b>Positive Percentage</b></td><th ".$p.">".$percent."</th></tr>
+								<tr><td style='border:none' colspan='6'></td><td colspan='4' ".$n."><b>Negative Percentage</b></td><th ".$n.">".$npercent."</th></tr>
+                                </tr>
+                            ";
+                        return $temp;
 					}
 				}
 				//Function End
@@ -207,37 +196,40 @@ else
 
 		function __construct(){
 			$this->db = new db();
-			$this->db = $this->db->database();
+            $this->db = $this->db->database();
+            $xy = new Dompdf();
 
 			$this->query_a = "SELECT DISTINCT(email) FROM exam_result";
-			$this->response_a = $this->db->query($this->query_a);
+            $this->response_a = $this->db->query($this->query_a);
+            $design ="<h3 style='text-align:center;text-decoration: underline;'>View Detailed Result</h3>";
 			if($this->response_a->num_rows!=0)
 			{
 				while($data = $this->response_a->fetch_assoc())
 				{
-					echo "<table border='3px' cellspacing='1px' cellpadding='4px' style='width:100%; margin-bottom:30px;'>";
-					echo "<tr style='background-color:yellow'><th width='10%'>Student No.</th><th width='25%'>Email</th><th width='8%'>Ques ID</th><th width='5%'>Visited</th><th width='5%'>Attempted</th><th width='5%'>Reviewed</th><th width='10%'>Multi Answer</th><th>A</th><th>B</th><th>C</th><th>D</th><th width='8%'>Weightage</th></tr>";
+					$design .= "<table border='3px' cellspacing='1px' cellpadding='4px' style='width:100%; margin-bottom:30px;'>";
+					$design .=  "<tr style='background-color:yellow'><th>Student No.</th><th>Ques ID</th><th>Visited</th><th>Attempted</th><th>Reviewed</th><th>Multi Answer</th><th>A</th><th>B</th><th>C</th><th>D</th><th>Weightage</th></tr>";
 					$dmail = $data['email'];
-					$this->view_result($dmail);
-					echo "</table>";
-
+					$design .= $this->view_result($dmail);
+                    $design .= "</table>";
 				}
 			}
 			else
 			{
-				echo "<table border='3px' cellspacing='1px' cellpadding='4px' style='width:100%; margin-bottom:30px;'>";
-				echo "<tr style='background-color:yellow'><th width='10%'>Student No.</th><th width='25%'>Email</th><th width='8%'>Ques ID</th><th width='5%'>Visited</th><th width='5%'>Attempted</th><th width='5%'>Reviewed</th><th width='10%'>Multi Answer</th><th>A</th><th>B</th><th>C</th><th>D</th><th width='8%'>Weightage</th></tr>";
-				echo "<tr><th colspan='12'>No Data Found</th></tr>";
-				echo "</table>";	
+				$design .= "<table border='3px' cellspacing='1px' cellpadding='4px' style='width:100%; margin-bottom:30px;'>";
+                $design .=  "<tr style='background-color:yellow'><th>Student No.</th><th>Ques ID</th><th>Visited</th><th>Attempted</th><th>Reviewed</th><th>Multi Answer</th><th>A</th><th>B</th><th>C</th><th>D</th><th>Weightage</th></tr>";
+                $design .= "<tr><th colspan='11'>No Data Found</th></tr>";
+				$design .= "</table>";	
 			}
-
+            $xy->loadHtml($design);
+            $xy->setPaper("A4","portrait");
+            $xy->render();
+            $xy->stream("view-detailed-result.pdf", array("Attachment" => false));
+			exit(0);
 
 			
 		}	
 	}
 
 	new admin_preview_view_detailed_result();
-	
-}
 
 ?>
