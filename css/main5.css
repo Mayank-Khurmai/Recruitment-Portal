@@ -514,7 +514,7 @@ footer{
 }
 
 .final-submit-btn-div input{
-    width: 100px;
+    min-width: 100px;
     height: 45px;
     font-weight: bold;
     color: white;
@@ -529,5 +529,56 @@ footer{
 
 .final-submit-btn-div input:hover{
     color: black;
+}
+
+#my-admin-loader-output{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.my-admin-loader-div{
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.admin-loader-logo-text{
+    position: absolute;
+    font-weight: bolder;
+    color: rgb(36, 33, 33);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#m-s-span{
+    font-size: 55px;
+}
+
+.admin-loader{
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid black;
+    border-right: 16px dotted black;
+    border-bottom: 16px solid black;
+    border-left: 16px dotted black;
+    width: 300px;
+    height: 300px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 5s linear infinite;
+  }
+  
+@-webkit-keyframes spin{
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+  
+@keyframes spin{
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
