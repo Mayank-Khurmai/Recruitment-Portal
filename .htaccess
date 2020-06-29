@@ -1,0 +1,9 @@
+#RewriteEngine On
+#RewriteRule ^ossadminpanel/([0-9a-zA-Z])$ http://localhost/Recruitment%20Portal/php/admin-panel-login-page.php
+
+
+
+ErrorDocument 404 http://localhost/Recruitment%20Portal/index.php
+ErrorDocument 403 http://localhost/Recruitment%20Portal/index.php
+
+DirectoryIndex http://localhost/Recruitment%20Portal/index.php
