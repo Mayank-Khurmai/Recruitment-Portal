@@ -15,8 +15,23 @@
     <link rel="stylesheet" href="../css/main5.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/main.js"></script>
+    <script>
+
+    var docElm = document.documentElement;
+           if (docElm.requestFullscreen) {
+               docElm.requestFullscreen();
+           }
+           else if (docElm.mozRequestFullScree)n) {
+               docElm.mozRequestFullScreen();
+           }
+           else if (docElm.webkitRequestFullScreen) {
+               docElm.webkitRequestFullScreen();
+           }
+ 
+    </script>
 </head>
-<body onload="onbodyloadtimestart()">
+<body onload="" oncontextmenu="return false" onkeydown="return false">
+
 
 <!-- Blurr Instruction Coding Start -->
 
@@ -167,7 +182,7 @@
     </div>
     <div class="final-submit-btn-div">
         <div class="final-submit-btn-div-div">
-            <input type="submit" value="Submit">
+            <input type="submit" class='exam-submit' value="Submit">
         </div>
     </div>
 </footer>

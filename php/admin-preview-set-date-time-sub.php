@@ -21,7 +21,7 @@
             $this->query_a = "UPDATE exam_date_time SET exam_date = '$edate', exam_time_start = '$stime', exam_time_end = '$etime', total_duration = '$tminute'";
                 if($this->db->query($this->query_a))
                 {
-                    $this->query_b = "UPDATE exam_time SET exam_date = '$edate', exam_start_time = '$stime', exam_end_time = '$etime', exam_duration = '$tminute', minute_remain = '$tminute'";
+                    $this->query_b = "UPDATE exam_time SET exam_date = '$edate', exam_start_time = '$stime', exam_end_time = '$etime', exam_duration = '$tminute', minute_remain = '$tminute', second_remain = '00'";
                     if($this->db->query($this->query_b))
                     {
                         echo "success";

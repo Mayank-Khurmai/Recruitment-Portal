@@ -4,6 +4,11 @@
     {
         header("Location: admin-panel-login-page.php");
     }
+    $xx="";
+    if($_SESSION['role']=="Member")
+    {
+        $xx = "disabled='disabled'";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +50,8 @@
                                 <div class='admin-loader'></div>
                             </div>
                         </div>
-            
+                        
+
             </div>
 
         </div>
@@ -107,6 +113,15 @@
             <div class="category-option admin-preview-index" id="edit-student-details">
                 <button>Edit Student Details</button>
             </div>
+            <div class="category-option admin-preview-index" id="view-admin-members">
+                <button>View Admin Members</button>
+            </div>
+            <div class="category-option admin-preview-index" id="add-admin-members">
+                <button <?php echo $xx; ?>>Add Admin Members</button>
+            </div>
+            <div class="category-option admin-preview-index" id="remove-admin-members">
+                <button <?php echo $xx; ?>>Remove Admin Members</button>
+            </div>
             <div class="category-option admin-preview-index" id="set-date-time">
                 <button>Set Exam Date/Time</button>
             </div>
@@ -120,9 +135,9 @@
 <!-- Footer Coding Start -->
 <footer>
     <div class="all-admin-btn">
-        <button>Print</button>
-        <button>Download</button>
-        <button>E-mail</button>
+        <button id="print" disabled="disabled">Print</button>
+        <button id="download" disabled="disabled">Download</button>
+        <button id="index-mail-btn">E-mail</button>
     </div>
     <div class="final-logout-btn-div">
         <div class="final-logout-btn-div-div">

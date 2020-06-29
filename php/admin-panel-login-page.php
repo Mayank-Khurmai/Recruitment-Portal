@@ -22,6 +22,17 @@
 
 
 <!-- Main Body Coding Start-->
+
+<!-- Nav Bar Coding Start-->
+<div class="navbar-div">
+        <div class="logo-name-div">
+            <div style="float:left"><img src="../images/logo.png" width="40px" height="40px" style="border-radius:50%"></div>
+            <div style="float:left; padding:5px">Open Source Software Research &amp; Development Centre</div>
+        </div>
+</div>
+<!-- Nav Bar Coding End-->
+
+
 <div id="full-body">
 
     <div class="login-form-div">
@@ -51,7 +62,7 @@
                     <div class="user-key-div"> 
                     </div>
                     <div class="user-key-input-div"> 
-                        <input type="password" id="input-key" placeholder="Secret Code">
+                        <input type="password" id="input-key" placeholder="Master Key">
                     </div>
                 </div>
                 <br>
@@ -60,17 +71,19 @@
                 </div>
                 <div class="loading-error-div">
                     <span id="error-msg">Invalid Login! Please try Again...</span>
-                    <div id="login-check"></div> 
                 </div>
             </form>
         </div>
 
-        <div class="oss-name-div">
-              <span class="oss-name-text">Open Source Software Research &amp; Development Centre</span>   
-        </div>
     </div>
 
 </div>
+
+
+<!-- Footer Coding Start -->
+<footer class="footer-div-design"></footer>
+<!-- Footer Coding End -->
+
 <!-- Main Body Coding End-->
 
 <!-- jQuery Coding Start-->
@@ -90,16 +103,15 @@ $(document).ready(function() {
             },
             cache : false,
             beforeSend : function(){
-                    document.getElementById("login-check").style.display = "block";
+                    document.getElementById("submit-div-btn").innerHTML = "<div id='login-check'></div>";
             },
             success: function(response)
             {
               if(response.trim()=="success"){
-                document.getElementById("login-check").style.display = "none";
                 window.location = "admin-after-login.php";
               }
               else{
-                document.getElementById("login-check").style.display = "none";
+                document.getElementById("submit-div-btn").innerHTML = "Login";
                 document.getElementById("error-msg").style.display = "block";
               }
               return false;

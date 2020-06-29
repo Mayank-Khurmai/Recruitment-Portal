@@ -1,11 +1,3 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['usermail']))
-    {
-        header("Location: instructions.php");
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
 <head>

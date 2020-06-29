@@ -6,10 +6,7 @@ if(!isset($_SESSION['usermail']))
   
 else
 {
-    
-    require("database-connection.php");
-	
-	class student_preview_details{
+    class student_preview_details{
 		private $db;
 		private $query;
 		private $response;

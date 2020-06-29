@@ -22,16 +22,22 @@ else
 			if($this->response->num_rows != 0)
 			{
                 while($data = $this->response->fetch_assoc())
-                {		
+                {	
+					$m=$data['minute_remain'];
+					$s=$data['second_remain'];
+					if($s<10)
+					{
+						$s ="0".$data['second_remain'];
+					}
                     echo "
-                        <span id='minute-span'>".$data['exam_duration']."</span> : <span id='second-span'>00</span></b>
+                        <span id='minute-span'>".$m."</span> : <span id='second-span'>".$s."</span></b>
                         ";
 				}
             
             }
             else
             {
-				echo $data['Dummy Student'];
+				echo $data['Time Not Set'];
 			}
 		}
 	}

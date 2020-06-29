@@ -25,8 +25,10 @@
             $this->response = $this->db->query($this->query);
 			if($this->response->num_rows != 0)
 			{
+				$data = $this->response->fetch_assoc();
                 session_start();
-                $_SESSION['adminmail'] = $username;
+				$_SESSION['adminmail'] = $username;
+				$_SESSION['role'] = $data['role'];
                 echo "success";
 			}
 			else{

@@ -54,15 +54,30 @@ else
     {
         require("admin-preview-view-approved-user.php");      
     }
-
+    
+    else if($request=="edit-student-details")
+    {
+        require("admin-preview-edit-student-details.php");      
+    }
+    
+    else if($request=="remove-admin-members")
+    {
+        require("admin-preview-remove-admin-members.php");      
+    }
+    
     else if($request=="view-pending-users")
     {
         require("admin-preview-view-pending-user.php");      
     }
     
-    else if($request=="edit-student-details")
+    else if($request=="view-admin-members")
     {
-        require("admin-preview-edit-student-details.php");      
+        require("admin-preview-view-admin-members.php");      
+    }
+    
+    else if($request=="add-admin-members")
+    {
+        require("admin-preview-add-admin-members.php");      
     }
     
     else if($request=="edit-questions")
