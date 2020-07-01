@@ -10,7 +10,7 @@
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/index.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false" onkeydown="return false">
   
 <!-- Loader Coding Start -->
 <!-- <div id="my-loader">
