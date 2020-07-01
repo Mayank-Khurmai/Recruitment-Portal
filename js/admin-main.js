@@ -752,6 +752,51 @@ $(document).ready(function(){
 });
 
 
+  
+
+$(document).keydown(function(e){
+    if(e.which === 123){
+       return false;
+    }
+    if(e.which === 122){
+        return false;
+    }
+    if(e.which === 27 || e.charCode===27 || e.keyCode===27 ){
+        return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'A'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'E'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'R'.charCodeAt(0)){
+    location.reload();
+    }
+    if(e.ctrlKey && e.keyCode == 'R'.charCodeAt(0)){
+    return false;
+    }
+});
+
+
 $(document).ready(function(){
     $("#print").on("click", function(){
         var x = $(".category-no").attr("current");
