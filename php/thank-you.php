@@ -8,7 +8,7 @@
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/main.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false" onkeydown="return false">
 
 
 <!-- Main Body Coding Start-->

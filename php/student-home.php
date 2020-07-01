@@ -30,7 +30,7 @@
  
     </script>
 </head>
-<body onload="" oncontextmenu="return false" onkeydown="return false">
+<body oncontextmenu="return false" onkeydown="return false">
 
 
 <!-- Blurr Instruction Coding Start -->

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../css/admin-css.css">
     <script src="../js/jquery-1.9.1.min.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false" onkeydown="return false">
 
 
 <!-- Main Body Coding Start-->
